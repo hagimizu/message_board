@@ -1,5 +1,18 @@
 <%= form_with(model: message, local: true) do |f| %>
-  <%= f.label :content, "メッセージ"　%>
+  <% if message.errors.any? %>
+    <div id = "error_explanation">
+      <ul>
+        <% message.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= f.label :title, "タイトル" %>
+  <%= f.text_field :title %>
+  
+  <%= f.label :content, "メッセージ" %>
   <%= f.text_field :content %>
   
   <%= f.submit "投稿" %>
